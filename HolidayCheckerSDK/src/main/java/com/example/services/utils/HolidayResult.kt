@@ -11,4 +11,5 @@ sealed class HolidayError(val message: String) {
     object InvalidResponse : HolidayError("Invalid API response format")
     object ApiLimitExceeded : HolidayError("API request limit exceeded")
     object UnknownError : HolidayError("An unexpected error occurred")
+    data class ValidateError(val mess: String) : HolidayError(mess)
 }
