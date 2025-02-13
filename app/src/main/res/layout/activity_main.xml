@@ -35,6 +35,11 @@
                 android:hint="Enter Day"
                 android:inputType="number" />
 
+            <Spinner
+                android:id="@+id/spinnerMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <Button
                 android:id="@+id/btnCheck"
                 android:layout_width="wrap_content"

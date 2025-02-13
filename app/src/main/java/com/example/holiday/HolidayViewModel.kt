@@ -16,13 +16,14 @@ class HolidayViewModel @Inject constructor(
     private val holidayUseCase: HolidayUseCase
 ) : ViewModel() {
 
+    var holidayMode = HolidayCheckMode.ANY
     private val _holidayState = MutableLiveData<HolidayResult>()
     val holidayState: LiveData<HolidayResult> get() = _holidayState
 
-    fun checkHoliday(year: Int, month: Int, day: Int, mode: HolidayCheckMode) {
+    fun checkHoliday(year: Int, month: Int, day: Int) {
         viewModelScope.launch {
             _holidayState.postValue(HolidayResult.Loading)
-            val result = holidayUseCase.execute(year, month, day, mode)
+            val result = holidayUseCase.execute(year, month, day, holidayMode)
             _holidayState.postValue(result)
         }
     }
