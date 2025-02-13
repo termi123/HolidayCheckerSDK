@@ -1,0 +1,33 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    apply from: 'dependencies/dependencies.gradle'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$Builds.tool"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Builds.kotlin"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$Builds.plugin"
+        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply plugin: "com.vanniktech.android.junit.jacoco"
+junitJacoco {
+    jacocoVersion = '0.8.8' // type String
+    excludes = [
+            '**/*Binding*.*', '**/*DataBinderMapper*/*',
+            '**/*Fragment*.*', '**/*Hilt*/*', '**/*Hilt*', '**/*Impl*.*',
+            '**/*UseCase*.*', '**/*Adapter*','**/*BuildConfig*','**/*BR*','**/*AppModule*',
+            '**/*Factory*', '**/*Holder*', '**/*CallBack*'
+    ]
+    includeInstrumentationCoverageInMergedReport = false // type boolean
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
